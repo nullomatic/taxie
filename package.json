@@ -1,0 +1,41 @@
+{
+  "name": "taxie",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "classnames": "^2.5.1",
+    "dotenv": "^16.4.5",
+    "lodash": "^4.17.21",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-common-types": "^6.5.2",
+    "@types/lodash": "^4.17.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/parser": "^7.13.0",
+    "axios": "^1.7.2",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.3",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-unused-imports": "^3.2.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}

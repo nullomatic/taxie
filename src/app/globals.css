@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-grid {
+    background: var(--dot-bg);
+    background-image: radial-gradient(
+      var(--dot-color) var(--dot-size),
+      transparent 0
+    );
+    background-size: 24px 24px;
+    background-position: -11px -11px;
+  }
+}
+
+:root {
+  --dot-bg: white;
+  --dot-color: rgb(168 162 158);
+  --dot-size: 1px;
+}
