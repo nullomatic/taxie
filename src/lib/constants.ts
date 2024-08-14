@@ -38,11 +38,939 @@ export enum Schedule {
 }
 
 export enum FilingStatus_US {
-  Single,
-  MarriedFilingJointly,
-  MarriedFilingSeparately,
-  HeadOfHousehold,
+  Single = 'Single',
+  MarriedFilingJointly = 'MarriedFilingJointly',
+  MarriedFilingSeparately = 'MarriedFilingSeparately',
+  HeadOfHousehold = 'HeadOfHousehold',
 }
+
+export enum US_States {
+  AL = 'Alabama',
+  AK = 'Alaska',
+  AZ = 'Arizona',
+  AR = 'Arkansas',
+  CA = 'California',
+  CO = 'Colorado',
+  CT = 'Connecticut',
+  DE = 'Delaware',
+  DC = 'Washington, D.C.',
+  FL = 'Florida',
+  GA = 'Georgia',
+  HI = 'Hawaii',
+  ID = 'Idaho',
+  IL = 'Illinois',
+  IN = 'Indiana',
+  IA = 'Iowa',
+  KS = 'Kansas',
+  KY = 'Kentucky',
+  LA = 'Louisiana',
+  ME = 'Maine',
+  MD = 'Maryland',
+  MA = 'Massachusetts',
+  MI = 'Michigan',
+  MN = 'Minnesota',
+  MS = 'Mississippi',
+  MO = 'Missouri',
+  MT = 'Montana',
+  NE = 'Nebraska',
+  NV = 'Nevada',
+  NH = 'New Hampshire',
+  NJ = 'New Jersey',
+  NM = 'New Mexico',
+  NY = 'New York',
+  NC = 'North Carolina',
+  ND = 'North Dakota',
+  OH = 'Ohio',
+  OK = 'Oklahoma',
+  OR = 'Oregon',
+  PA = 'Pennsylvania',
+  RI = 'Rhode Island',
+  SC = 'South Carolina',
+  SD = 'South Dakota',
+  TN = 'Tennessee',
+  TX = 'Texas',
+  UT = 'Utah',
+  VT = 'Vermont',
+  VA = 'Virginia',
+  WA = 'Washington',
+  WV = 'West Virginia',
+  WI = 'Wisconsin',
+  WY = 'Wyoming',
+}
+
+export const StateBrackets_US = {
+  [US_States.AL]: {
+    [FilingStatus_US.Single]: {
+      deduction: 3000,
+      brackets: [
+        { min: 0, max: 500, rate: 2 },
+        { min: 500, max: 3000, rate: 4 },
+        { min: 3000, max: Infinity, rate: 5 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 8500,
+      brackets: [
+        { min: 0, max: 1000, rate: 2 },
+        { min: 1000, max: 6000, rate: 4 },
+        { min: 6000, max: Infinity, rate: 5 },
+      ],
+    },
+    exemption: { single: 1500, couple: 3000, dependent: 1000 },
+  },
+  [US_States.AK]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.AZ]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [{ min: 0, max: Infinity, rate: 2.5 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [{ min: 0, max: Infinity, rate: 2.5 }],
+    },
+    exemption: { single: null, couple: null, dependent: 100 },
+  },
+  [US_States.AR]: {
+    [FilingStatus_US.Single]: {
+      deduction: 2340,
+      brackets: [
+        { min: 0, max: 4400, rate: 2 },
+        { min: 4400, max: 8800, rate: 4 },
+        { min: 8800, max: Infinity, rate: 4.4 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 4680,
+      brackets: [
+        { min: 0, max: 4400, rate: 2 },
+        { min: 4400, max: 8800, rate: 4 },
+        { min: 8800, max: Infinity, rate: 4.4 },
+      ],
+    },
+    exemption: { single: 29, couple: 58, dependent: 29 },
+  },
+  [US_States.CA]: {
+    [FilingStatus_US.Single]: {
+      deduction: 5363,
+      brackets: [
+        { min: 0, max: 10412, rate: 1 },
+        { min: 10412, max: 24684, rate: 2 },
+        { min: 24684, max: 38959, rate: 4 },
+        { min: 38959, max: 54081, rate: 6 },
+        { min: 54081, max: 68350, rate: 8 },
+        { min: 68350, max: 349137, rate: 9.3 },
+        { min: 349137, max: 418961, rate: 10.3 },
+        { min: 418961, max: 698271, rate: 11.3 },
+        { min: 698271, max: 1000000, rate: 12.3 },
+        { min: 1000000, max: Infinity, rate: 13.3 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 10726,
+      brackets: [
+        { min: 0, max: 20824, rate: 1 },
+        { min: 20824, max: 49368, rate: 2 },
+        { min: 49368, max: 77918, rate: 4 },
+        { min: 77918, max: 108162, rate: 6 },
+        { min: 108162, max: 136700, rate: 8 },
+        { min: 136700, max: 698274, rate: 9.3 },
+        { min: 698274, max: 837922, rate: 10.3 },
+        { min: 837922, max: 1000000, rate: 11.3 },
+        { min: 1000000, max: 1396542, rate: 12.3 },
+        { min: 1396542, max: Infinity, rate: 13.3 },
+      ],
+    },
+    exemption: { single: 144, couple: 288, dependent: 446 },
+  },
+  [US_States.CO]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [{ min: 0, max: Infinity, rate: 4.4 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [{ min: 0, max: Infinity, rate: 4.4 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.CT]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 10000, rate: 2 },
+        { min: 10000, max: 50000, rate: 4.5 },
+        { min: 50000, max: 100000, rate: 5.5 },
+        { min: 100000, max: 200000, rate: 6 },
+        { min: 200000, max: 250000, rate: 6.5 },
+        { min: 250000, max: 500000, rate: 6.9 },
+        { min: 500000, max: Infinity, rate: 6.99 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 20000, rate: 2 },
+        { min: 20000, max: 100000, rate: 4.5 },
+        { min: 100000, max: 200000, rate: 5.5 },
+        { min: 200000, max: 400000, rate: 6 },
+        { min: 400000, max: 500000, rate: 6.5 },
+        { min: 500000, max: 1000000, rate: 6.9 },
+        { min: 1000000, max: Infinity, rate: 6.99 },
+      ],
+    },
+    exemption: { single: 15000, couple: 24000, dependent: 0 },
+  },
+  [US_States.DE]: {
+    [FilingStatus_US.Single]: {
+      deduction: 3250,
+      brackets: [
+        { min: 2000, max: 5000, rate: 2.2 },
+        { min: 5000, max: 10000, rate: 3.9 },
+        { min: 10000, max: 20000, rate: 4.8 },
+        { min: 20000, max: 25000, rate: 5.2 },
+        { min: 25000, max: 60000, rate: 5.55 },
+        { min: 60000, max: Infinity, rate: 6.6 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 6500,
+      brackets: [
+        { min: 2000, max: 5000, rate: 2.2 },
+        { min: 5000, max: 10000, rate: 3.9 },
+        { min: 10000, max: 20000, rate: 4.8 },
+        { min: 20000, max: 25000, rate: 5.2 },
+        { min: 25000, max: 60000, rate: 5.55 },
+        { min: 60000, max: Infinity, rate: 6.6 },
+      ],
+    },
+    exemption: { single: 110, couple: 220, dependent: 110 },
+  },
+  [US_States.FL]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.GA]: {
+    [FilingStatus_US.Single]: {
+      deduction: 12000,
+      brackets: [{ min: 0, max: Infinity, rate: 5.49 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 24000,
+      brackets: [{ min: 0, max: Infinity, rate: 5.49 }],
+    },
+    exemption: { single: null, couple: null, dependent: 3000 },
+  },
+  [US_States.HI]: {
+    [FilingStatus_US.Single]: {
+      deduction: 2200,
+      brackets: [
+        { min: 0, max: 2400, rate: 1.4 },
+        { min: 2400, max: 4800, rate: 3.2 },
+        { min: 4800, max: 9600, rate: 5.5 },
+        { min: 9600, max: 14400, rate: 6.4 },
+        { min: 14400, max: 19200, rate: 6.8 },
+        { min: 19200, max: 24000, rate: 7.2 },
+        { min: 24000, max: 36000, rate: 7.6 },
+        { min: 36000, max: 48000, rate: 7.9 },
+        { min: 48000, max: 150000, rate: 8.25 },
+        { min: 150000, max: 175000, rate: 9 },
+        { min: 175000, max: 200000, rate: 10 },
+        { min: 200000, max: Infinity, rate: 11 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 4400,
+      brackets: [
+        { min: 0, max: 4800, rate: 1.4 },
+        { min: 4800, max: 9600, rate: 3.2 },
+        { min: 9600, max: 19200, rate: 5.5 },
+        { min: 19200, max: 28800, rate: 6.4 },
+        { min: 28800, max: 38400, rate: 6.8 },
+        { min: 38400, max: 48000, rate: 7.2 },
+        { min: 48000, max: 72000, rate: 7.6 },
+        { min: 72000, max: 96000, rate: 7.9 },
+        { min: 96000, max: 300000, rate: 8.25 },
+        { min: 300000, max: 350000, rate: 9 },
+        { min: 350000, max: 400000, rate: 10 },
+        { min: 400000, max: Infinity, rate: 11 },
+      ],
+    },
+    exemption: { single: 1144, couple: 2288, dependent: 1144 },
+  },
+  [US_States.ID]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [{ min: 4489, max: Infinity, rate: 5.8 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [{ min: 8978, max: Infinity, rate: 5.8 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.IL]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 4.95 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 4.95 }],
+    },
+    exemption: { single: 2775, couple: 5550, dependent: 2775 },
+  },
+  [US_States.IN]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 3.05 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 3.05 }],
+    },
+    exemption: { single: 1000, couple: 2000, dependent: 1000 },
+  },
+  [US_States.IA]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 6210, rate: 4.4 },
+        { min: 6210, max: 31050, rate: 4.82 },
+        { min: 31050, max: Infinity, rate: 5.7 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 12420, rate: 4.4 },
+        { min: 12420, max: 62100, rate: 4.82 },
+        { min: 62100, max: Infinity, rate: 5.7 },
+      ],
+    },
+    exemption: { single: 40, couple: 80, dependent: 40 },
+  },
+  [US_States.KS]: {
+    [FilingStatus_US.Single]: {
+      deduction: 3500,
+      brackets: [
+        { min: 0, max: 15000, rate: 3.1 },
+        { min: 15000, max: 30000, rate: 5.25 },
+        { min: 30000, max: Infinity, rate: 5.7 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 8000,
+      brackets: [
+        { min: 0, max: 30000, rate: 3.1 },
+        { min: 30000, max: 60000, rate: 5.25 },
+        { min: 60000, max: Infinity, rate: 5.7 },
+      ],
+    },
+    exemption: { single: 2250, couple: 4500, dependent: 2250 },
+  },
+  [US_States.KY]: {
+    [FilingStatus_US.Single]: {
+      deduction: 3160,
+      brackets: [{ min: 0, max: Infinity, rate: 4 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 6320,
+      brackets: [{ min: 0, max: Infinity, rate: 4 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.LA]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 12500, rate: 1.85 },
+        { min: 12500, max: 50000, rate: 3.5 },
+        { min: 50000, max: Infinity, rate: 4.25 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 25000, rate: 1.85 },
+        { min: 25000, max: 100000, rate: 3.5 },
+        { min: 100000, max: Infinity, rate: 4.25 },
+      ],
+    },
+    exemption: { single: 4500, couple: 9000, dependent: 1000 },
+  },
+  [US_States.ME]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 0, max: 26050, rate: 5.8 },
+        { min: 26050, max: 61600, rate: 6.75 },
+        { min: 61600, max: Infinity, rate: 7.15 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 0, max: 52100, rate: 5.8 },
+        { min: 52100, max: 123250, rate: 6.75 },
+        { min: 123250, max: Infinity, rate: 7.15 },
+      ],
+    },
+    exemption: { single: 5000, couple: 10000, dependent: 300 },
+  },
+  [US_States.MD]: {
+    [FilingStatus_US.Single]: {
+      deduction: 2550,
+      brackets: [
+        { min: 0, max: 1000, rate: 2 },
+        { min: 1000, max: 2000, rate: 3 },
+        { min: 2000, max: 3000, rate: 4 },
+        { min: 3000, max: 100000, rate: 4.75 },
+        { min: 100000, max: 125000, rate: 5 },
+        { min: 125000, max: 150000, rate: 5.25 },
+        { min: 150000, max: 250000, rate: 5.5 },
+        { min: 250000, max: Infinity, rate: 5.75 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 5150,
+      brackets: [
+        { min: 0, max: 1000, rate: 2 },
+        { min: 1000, max: 2000, rate: 3 },
+        { min: 2000, max: 3000, rate: 4 },
+        { min: 3000, max: 150000, rate: 4.75 },
+        { min: 150000, max: 175000, rate: 5 },
+        { min: 175000, max: 225000, rate: 5.25 },
+        { min: 225000, max: 300000, rate: 5.5 },
+        { min: 300000, max: Infinity, rate: 5.75 },
+      ],
+    },
+    exemption: { single: 3200, couple: 6400, dependent: 3200 },
+  },
+  [US_States.MA]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 1000000, rate: 5 },
+        { min: 1000000, max: Infinity, rate: 9 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 1000000, rate: 5 },
+        { min: 1000000, max: Infinity, rate: 9 },
+      ],
+    },
+    exemption: { single: 4400, couple: 8800, dependent: 1000 },
+  },
+  [US_States.MI]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 4.25 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 4.25 }],
+    },
+    exemption: { single: 5600, couple: 11200, dependent: 5600 },
+  },
+  [US_States.MN]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14575,
+      brackets: [
+        { min: 0, max: 31690, rate: 5.35 },
+        { min: 31690, max: 104090, rate: 6.8 },
+        { min: 104090, max: 193240, rate: 7.85 },
+        { min: 193240, max: Infinity, rate: 9.85 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29150,
+      brackets: [
+        { min: 0, max: 46330, rate: 5.35 },
+        { min: 46330, max: 184040, rate: 6.8 },
+        { min: 184040, max: 321450, rate: 7.85 },
+        { min: 321450, max: Infinity, rate: 9.85 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: 5050 },
+  },
+  [US_States.MS]: {
+    [FilingStatus_US.Single]: {
+      deduction: 2300,
+      brackets: [{ min: 10000, max: Infinity, rate: 4.7 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 4600,
+      brackets: [{ min: 10000, max: Infinity, rate: 4.7 }],
+    },
+    exemption: { single: 6000, couple: 12000, dependent: 1500 },
+  },
+  [US_States.MO]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 1273, max: 2546, rate: 2 },
+        { min: 2546, max: 3819, rate: 2.5 },
+        { min: 3819, max: 5092, rate: 3 },
+        { min: 5092, max: 6365, rate: 3.5 },
+        { min: 6365, max: 7638, rate: 4 },
+        { min: 7638, max: 8911, rate: 4.5 },
+        { min: 8911, max: Infinity, rate: 4.8 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 1207, max: 2414, rate: 2 },
+        { min: 2414, max: 3621, rate: 2.5 },
+        { min: 3621, max: 4828, rate: 3 },
+        { min: 4828, max: 6035, rate: 3.5 },
+        { min: 6035, max: 7242, rate: 4 },
+        { min: 7242, max: 8449, rate: 4.5 },
+        { min: 8449, max: Infinity, rate: 4.8 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.MT]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 0, max: 20500, rate: 4.7 },
+        { min: 20500, max: Infinity, rate: 5.9 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 0, max: 41000, rate: 4.7 },
+        { min: 41000, max: Infinity, rate: 5.9 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.NE]: {
+    [FilingStatus_US.Single]: {
+      deduction: 7900,
+      brackets: [
+        { min: 0, max: 3700, rate: 2.46 },
+        { min: 3700, max: 22170, rate: 3.51 },
+        { min: 22170, max: 35730, rate: 5.01 },
+        { min: 35730, max: Infinity, rate: 5.84 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 15800,
+      brackets: [
+        { min: 0, max: 7390, rate: 2.46 },
+        { min: 7390, max: 44350, rate: 3.51 },
+        { min: 44350, max: 71460, rate: 5.01 },
+        { min: 71460, max: Infinity, rate: 5.84 },
+      ],
+    },
+    exemption: { single: 157, couple: 314, dependent: 157 },
+  },
+  [US_States.NV]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.NH]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [{ min: null, max: Infinity, rate: 3 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [{ min: null, max: Infinity, rate: 3 }],
+    },
+    exemption: { single: 2400, couple: 4800, dependent: null },
+  },
+  [US_States.NJ]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 20000, rate: 1.4 },
+        { min: 20000, max: 35000, rate: 1.75 },
+        { min: 35000, max: 40000, rate: 3.5 },
+        { min: 40000, max: 75000, rate: 5.53 },
+        { min: 75000, max: 500000, rate: 6.37 },
+        { min: 500000, max: 1000000, rate: 8.97 },
+        { min: 1000000, max: null, rate: 10.75 },
+        { min: null, max: Infinity, rate: null },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 20000, rate: 1.4 },
+        { min: 20000, max: 50000, rate: 1.75 },
+        { min: 50000, max: 70000, rate: 2.45 },
+        { min: 70000, max: 80000, rate: 3.5 },
+        { min: 80000, max: 150000, rate: 5.53 },
+        { min: 150000, max: 500000, rate: 6.37 },
+        { min: 500000, max: 1000000, rate: 8.97 },
+        { min: 1000000, max: Infinity, rate: 10.75 },
+      ],
+    },
+    exemption: { single: 1000, couple: 2000, dependent: 1500 },
+  },
+  [US_States.NM]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 0, max: 5500, rate: 1.7 },
+        { min: 5500, max: 11000, rate: 3.2 },
+        { min: 11000, max: 16000, rate: 4.7 },
+        { min: 16000, max: 210000, rate: 4.9 },
+        { min: 210000, max: Infinity, rate: 5.9 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 0, max: 8000, rate: 1.7 },
+        { min: 8000, max: 16000, rate: 3.2 },
+        { min: 16000, max: 24000, rate: 4.7 },
+        { min: 24000, max: 315000, rate: 4.9 },
+        { min: 315000, max: Infinity, rate: 5.9 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: 4000 },
+  },
+  [US_States.NY]: {
+    [FilingStatus_US.Single]: {
+      deduction: 8000,
+      brackets: [
+        { min: 0, max: 8500, rate: 4 },
+        { min: 8500, max: 11700, rate: 4.5 },
+        { min: 11700, max: 13900, rate: 5.25 },
+        { min: 13900, max: 80650, rate: 5.5 },
+        { min: 80650, max: 215400, rate: 6 },
+        { min: 215400, max: 1077550, rate: 6.85 },
+        { min: 1077550, max: 5000000, rate: 9.65 },
+        { min: 5000000, max: 25000000, rate: 10.3 },
+        { min: 25000000, max: Infinity, rate: 10.9 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 16050,
+      brackets: [
+        { min: 0, max: 17150, rate: 4 },
+        { min: 17150, max: 23600, rate: 4.5 },
+        { min: 23600, max: 27900, rate: 5.25 },
+        { min: 27900, max: 161550, rate: 5.5 },
+        { min: 161550, max: 323200, rate: 6 },
+        { min: 323200, max: 2155350, rate: 6.85 },
+        { min: 2155350, max: 5000000, rate: 9.65 },
+        { min: 5000000, max: 25000000, rate: 10.3 },
+        { min: 25000000, max: Infinity, rate: 10.9 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: 1000 },
+  },
+  [US_States.NC]: {
+    [FilingStatus_US.Single]: {
+      deduction: 12750,
+      brackets: [{ min: 0, max: Infinity, rate: 4.5 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 25500,
+      brackets: [{ min: 0, max: Infinity, rate: 4.5 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.ND]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 44725, max: 225975, rate: 1.95 },
+        { min: 225975, max: Infinity, rate: 2.5 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 74750, max: 275100, rate: 1.95 },
+        { min: 275100, max: Infinity, rate: 2.5 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.OH]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 26050, max: 92150, rate: 2.75 },
+        { min: 92150, max: Infinity, rate: 3.5 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 26050, max: 92150, rate: 2.75 },
+        { min: 92150, max: Infinity, rate: 3.5 },
+      ],
+    },
+    exemption: { single: 2400, couple: 4800, dependent: 2500 },
+  },
+  [US_States.OK]: {
+    [FilingStatus_US.Single]: {
+      deduction: 6350,
+      brackets: [
+        { min: 0, max: 1000, rate: 0.25 },
+        { min: 1000, max: 2500, rate: 0.75 },
+        { min: 2500, max: 3750, rate: 1.75 },
+        { min: 3750, max: 4900, rate: 2.75 },
+        { min: 4900, max: 7200, rate: 3.75 },
+        { min: 7200, max: Infinity, rate: 4.75 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 12700,
+      brackets: [
+        { min: 0, max: 2000, rate: 0.25 },
+        { min: 2000, max: 5000, rate: 0.75 },
+        { min: 5000, max: 7500, rate: 1.75 },
+        { min: 7500, max: 9800, rate: 2.75 },
+        { min: 9800, max: 12200, rate: 3.75 },
+        { min: 12200, max: Infinity, rate: 4.75 },
+      ],
+    },
+    exemption: { single: 1000, couple: 2000, dependent: 1000 },
+  },
+  [US_States.OR]: {
+    [FilingStatus_US.Single]: {
+      deduction: 2745,
+      brackets: [
+        { min: 0, max: 4300, rate: 4.75 },
+        { min: 4300, max: 10750, rate: 6.75 },
+        { min: 10750, max: 125000, rate: 8.75 },
+        { min: 125000, max: Infinity, rate: 9.9 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 5495,
+      brackets: [
+        { min: 0, max: 8600, rate: 4.75 },
+        { min: 8600, max: 21500, rate: 6.75 },
+        { min: 21500, max: 250000, rate: 8.75 },
+        { min: 250000, max: Infinity, rate: 9.9 },
+      ],
+    },
+    exemption: { single: 249, couple: 498, dependent: 249 },
+  },
+  [US_States.PA]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 3.07 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [{ min: 0, max: Infinity, rate: 3.07 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.RI]: {
+    [FilingStatus_US.Single]: {
+      deduction: 10550,
+      brackets: [
+        { min: 0, max: 77450, rate: 3.75 },
+        { min: 77450, max: 176050, rate: 4.75 },
+        { min: 176050, max: Infinity, rate: 5.99 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 21150,
+      brackets: [
+        { min: 0, max: 77450, rate: 3.75 },
+        { min: 77450, max: 176050, rate: 4.75 },
+        { min: 176050, max: Infinity, rate: 5.99 },
+      ],
+    },
+    exemption: { single: 4950, couple: 9900, dependent: 4950 },
+  },
+  [US_States.SC]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 0, max: 3460, rate: 0 },
+        { min: 3460, max: 17330, rate: 3 },
+        { min: 17330, max: Infinity, rate: 6.4 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 0, max: 3460, rate: 0 },
+        { min: 3460, max: 17330, rate: 3 },
+        { min: 17330, max: Infinity, rate: 6.4 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: 4610 },
+  },
+  [US_States.SD]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.TN]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.TX]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.UT]: {
+    [FilingStatus_US.Single]: {
+      deduction: 876,
+      brackets: [{ min: 0, max: Infinity, rate: 4.65 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 1752,
+      brackets: [{ min: 0, max: Infinity, rate: 4.65 }],
+    },
+    exemption: { single: null, couple: null, dependent: 1941 },
+  },
+  [US_States.VT]: {
+    [FilingStatus_US.Single]: {
+      deduction: 7000,
+      brackets: [
+        { min: 0, max: 45400, rate: 3.35 },
+        { min: 45400, max: 110050, rate: 6.6 },
+        { min: 110050, max: 229550, rate: 7.6 },
+        { min: 229550, max: Infinity, rate: 8.75 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 14050,
+      brackets: [
+        { min: 0, max: 75850, rate: 3.35 },
+        { min: 75850, max: 183400, rate: 6.6 },
+        { min: 183400, max: 279450, rate: 7.6 },
+        { min: 279450, max: Infinity, rate: 8.75 },
+      ],
+    },
+    exemption: { single: 4850, couple: 9700, dependent: 4850 },
+  },
+  [US_States.VA]: {
+    [FilingStatus_US.Single]: {
+      deduction: 8000,
+      brackets: [
+        { min: 0, max: 3000, rate: 2 },
+        { min: 3000, max: 5000, rate: 3 },
+        { min: 5000, max: 17000, rate: 5 },
+        { min: 17000, max: Infinity, rate: 5.75 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 16000,
+      brackets: [
+        { min: 0, max: 3000, rate: 2 },
+        { min: 3000, max: 5000, rate: 3 },
+        { min: 5000, max: 17000, rate: 5 },
+        { min: 17000, max: Infinity, rate: 5.75 },
+      ],
+    },
+    exemption: { single: 930, couple: 1860, dependent: 930 },
+  },
+  [US_States.WA]: {
+    [FilingStatus_US.Single]: {
+      deduction: 250000,
+      brackets: [{ min: null, max: Infinity, rate: 7 }],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 250000,
+      brackets: [{ min: null, max: Infinity, rate: 7 }],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.WV]: {
+    [FilingStatus_US.Single]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 10000, rate: 2.36 },
+        { min: 10000, max: 25000, rate: 3.15 },
+        { min: 25000, max: 40000, rate: 3.54 },
+        { min: 40000, max: 60000, rate: 4.72 },
+        { min: 60000, max: Infinity, rate: 5.12 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: null,
+      brackets: [
+        { min: 0, max: 10000, rate: 2.36 },
+        { min: 10000, max: 25000, rate: 3.15 },
+        { min: 25000, max: 40000, rate: 3.54 },
+        { min: 40000, max: 60000, rate: 4.72 },
+        { min: 60000, max: Infinity, rate: 5.12 },
+      ],
+    },
+    exemption: { single: 2000, couple: 4000, dependent: 2000 },
+  },
+  [US_States.WI]: {
+    [FilingStatus_US.Single]: {
+      deduction: 13230,
+      brackets: [
+        { min: 0, max: 14320, rate: 3.5 },
+        { min: 14320, max: 28640, rate: 4.4 },
+        { min: 28640, max: 315310, rate: 5.3 },
+        { min: 315310, max: Infinity, rate: 7.65 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 24490,
+      brackets: [
+        { min: 0, max: 19090, rate: 3.5 },
+        { min: 19090, max: 38190, rate: 4.4 },
+        { min: 38190, max: 420420, rate: 5.3 },
+        { min: 420420, max: Infinity, rate: 7.65 },
+      ],
+    },
+    exemption: { single: 700, couple: 1400, dependent: 700 },
+  },
+  [US_States.WY]: {
+    [FilingStatus_US.Single]: { deduction: null, brackets: [] },
+    [FilingStatus_US.MarriedFilingJointly]: { deduction: null, brackets: [] },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+  [US_States.DC]: {
+    [FilingStatus_US.Single]: {
+      deduction: 14600,
+      brackets: [
+        { min: 0, max: 10000, rate: 4 },
+        { min: 10000, max: 40000, rate: 6 },
+        { min: 40000, max: 60000, rate: 6.5 },
+        { min: 60000, max: 250000, rate: 8.5 },
+        { min: 250000, max: 500000, rate: 9.25 },
+        { min: 500000, max: 1000000, rate: 9.75 },
+        { min: 1000000, max: Infinity, rate: 10.75 },
+      ],
+    },
+    [FilingStatus_US.MarriedFilingJointly]: {
+      deduction: 29200,
+      brackets: [
+        { min: 0, max: 10000, rate: 4 },
+        { min: 10000, max: 40000, rate: 6 },
+        { min: 40000, max: 60000, rate: 6.5 },
+        { min: 60000, max: 250000, rate: 8.5 },
+        { min: 250000, max: 500000, rate: 9.25 },
+        { min: 500000, max: 1000000, rate: 9.75 },
+        { min: 1000000, max: Infinity, rate: 10.75 },
+      ],
+    },
+    exemption: { single: null, couple: null, dependent: null },
+  },
+};
 
 export const FederalBrackets_US = {
   [FilingStatus_US.Single]: {
@@ -96,12 +1024,12 @@ export const FederalBrackets_US = {
 };
 
 export enum FilingStatus_DE {
-  SteuerklasseI,
-  SteuerklasseII,
-  SteuerklasseIII,
-  SteuerklasseIV,
-  SteuerklasseV,
-  SteuerklasseVI,
+  SteuerklasseI = 'SteuerklasseI',
+  SteuerklasseII = 'SteuerklasseII',
+  SteuerklasseIII = 'SteuerklasseIII',
+  SteuerklasseIV = 'SteuerklasseIV',
+  SteuerklasseV = 'SteuerklasseV',
+  SteuerklasseVI = 'SteuerklasseVI',
 }
 
 export const FederalBrackets_DE = {
@@ -120,7 +1048,8 @@ export const FederalBrackets_DE = {
   },
 
   /*
-   * Single parents with at least one child
+   * Single parents withat
+least one child
    */
   [FilingStatus_DE.SteuerklasseII]: {
     deduction: 10908,
@@ -134,7 +1063,9 @@ export const FederalBrackets_DE = {
   },
 
   /*
-   * Married individuals with a spouse who is in Tax Class V or without income
+   * Married individuals with a spouse whois
+in Tax Class Vor
+without income
    */
   [FilingStatus_DE.SteuerklasseIII]: {
     deduction: 21816,
@@ -162,7 +1093,8 @@ export const FederalBrackets_DE = {
   },
 
   /*
-   * Married individuals with a spouse in Tax Class III
+   * Married individuals with a spousein
+Tax Class III
    */
   [FilingStatus_DE.SteuerklasseV]: {
     deduction: 0,
@@ -188,4 +1120,210 @@ export const FederalBrackets_DE = {
       { min: 277826, max: Infinity, rate: 45 },
     ],
   },
+};
+
+export enum Metric {
+  Integer,
+  Float,
+  Percent,
+  Monetary,
+}
+
+export enum Locus {
+  ZIP = 'zip',
+  City = 'city',
+  County = 'county',
+  State = 'state',
+}
+
+export enum Aggregate {
+  Sum,
+  Average,
+  WeightedAverage,
+}
+
+export enum ACSMetric {
+  MedianIncome = 'S2001_C01_002E',
+  TotalPopulation = 'DP05_0001E',
+  TotalPopulationMale = 'DP05_0002E',
+  PercentPopulationMale = 'DP05_0002PE',
+  TotalPopulationFemale = 'DP05_0003E',
+  PercentPopulationFemale = 'DP05_0003PE',
+  TotalPopulationWhite = 'DP05_0037E',
+  PercentPopulationWhite = 'DP05_0037PE',
+  TotalPopulationBlack = 'DP05_0038E',
+  PercentPopulationBlack = 'DP05_0038PE',
+  TotalPopulationHispanic = 'DP05_0071E',
+  PercentPopulationHispanic = 'DP05_0071PE',
+  TotalPopulationAsian = 'DP05_0044E',
+  PercentPopulationAsian = 'DP05_0044PE',
+  TotalPopulationNative = 'DP05_0039E',
+  PercentPopulationNative = 'DP05_0039PE',
+  TotalPopulationPacific = 'DP05_0052E',
+  PercentPopulationPacific = 'DP05_0052PE',
+  TotalPopulationOther = 'DP05_0057E',
+  PercentPopulationOther = 'DP05_0057PE',
+}
+
+export const ACSMetricData = {
+  [ACSMetric.MedianIncome]: {
+    display: Metric.Integer,
+    label: 'Median Income',
+    short: 'Income',
+    emoji: '💸',
+    aggregate: Aggregate.Average,
+  },
+  [ACSMetric.TotalPopulation]: {
+    display: Metric.Integer,
+    label: 'Population, Total',
+    short: 'Total pop.',
+    emoji: '👫',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.TotalPopulationMale]: {
+    display: Metric.Integer,
+    label: 'Population, Male, Total',
+    short: 'Male pop.',
+    emoji: '♂️',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationMale]: {
+    display: Metric.Percent,
+    label: 'Population, Male, Percent',
+    short: '% Male pop.',
+    emoji: '♂️',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationFemale]: {
+    display: Metric.Integer,
+    label: 'Population, Female, Total',
+    short: 'Female pop.',
+    emoji: '♂️',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationFemale]: {
+    display: Metric.Percent,
+    label: 'Population, Female, Percent',
+    short: '% Female pop.',
+    emoji: '♂️',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationWhite]: {
+    display: Metric.Integer,
+    label: 'Population, White, Total',
+    short: 'White pop.',
+    emoji: '🧑🏻',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationWhite]: {
+    display: Metric.Percent,
+    label: 'Population, White, Percent',
+    short: '% White pop.',
+    emoji: '🧑🏻',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationBlack]: {
+    display: Metric.Integer,
+    label: 'Population, Black, Total',
+    short: 'Black pop.',
+    emoji: '🐵',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationBlack]: {
+    display: Metric.Percent,
+    label: 'Population, Black, Percent',
+    short: '% Black pop.',
+    emoji: '🐵',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationHispanic]: {
+    display: Metric.Integer,
+    label: 'Population, Hispanic, Total',
+    short: 'Hispanic pop.',
+    emoji: '👨🏾‍🌾',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationHispanic]: {
+    display: Metric.Percent,
+    label: 'Population, Hispanic, Percent',
+    short: '% Hispanic pop.',
+    emoji: '👨🏾‍🌾',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationAsian]: {
+    display: Metric.Integer,
+    label: 'Population, Asian, Total',
+    short: 'Asian pop.',
+    emoji: '😑',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationAsian]: {
+    display: Metric.Percent,
+    label: 'Population, Asian, Percent',
+    short: '% Asian pop.',
+    emoji: '😑',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationNative]: {
+    display: Metric.Integer,
+    label: 'Population, American Indian, Total',
+    short: 'Native pop.',
+    emoji: '🧑🏾',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationNative]: {
+    display: Metric.Percent,
+    label: 'Population, American Indian, Percent',
+    short: '% Native pop.',
+    emoji: '🧑🏾',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationPacific]: {
+    display: Metric.Integer,
+    label: 'Population, Pacific Islander, Total',
+    short: 'Pacific pop.',
+    emoji: '🧑🏾',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationPacific]: {
+    display: Metric.Percent,
+    label: 'Population, Pacific Islander, Percent',
+    short: '% Pacific pop.',
+    emoji: '🧑🏾',
+    aggregate: Aggregate.WeightedAverage,
+  },
+  [ACSMetric.TotalPopulationOther]: {
+    display: Metric.Integer,
+    label: 'Population, Other, Total',
+    short: 'Other pop.',
+    emoji: '👽',
+    aggregate: Aggregate.Sum,
+  },
+  [ACSMetric.PercentPopulationOther]: {
+    display: Metric.Percent,
+    label: 'Population, Other, Percent',
+    short: '% Other pop.',
+    emoji: '👽',
+    aggregate: Aggregate.WeightedAverage,
+  },
+};
+
+export enum Operator {
+  GreaterThan = '>',
+  LessThan = '<',
+}
+
+export const OperatorLabel = {
+  [Operator.GreaterThan]: 'Greater than',
+  [Operator.LessThan]: 'Less than',
+};
+
+export enum Order {
+  Ascending = 'ASC',
+  Descending = 'DESC',
+}
+
+export const OrderLabel = {
+  [Order.Ascending]: 'Sort: Ascending',
+  [Order.Descending]: 'Sort: Descending',
 };
